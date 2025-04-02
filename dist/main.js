@@ -1,1 +1,2 @@
-"use strict";
+import { setupEventListeners } from "./eventListeners.js";
+setupEventListeners();
