@@ -10,7 +10,7 @@ export function setupEventListeners(): void {
             list.innerHTML = '';
             discs.forEach((disc: Disc) => {
                 const li = document.createElement('li');
-                li.textContent = `${disc.title} || ${disc.type}`;
+                li.textContent = `${disc.title} || ${disc.type} || ${disc.id}`;
                 list.appendChild(li);
             });
         }

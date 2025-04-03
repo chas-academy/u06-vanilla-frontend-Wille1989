@@ -16,7 +16,7 @@ export function setupEventListeners() {
             list.innerHTML = '';
             discs.forEach((disc) => {
                 const li = document.createElement('li');
-                li.textContent = `${disc.title} || ${disc.type}`;
+                li.textContent = `${disc.title} || ${disc.type} || ${disc.id}`;
                 list.appendChild(li);
             });
         }
