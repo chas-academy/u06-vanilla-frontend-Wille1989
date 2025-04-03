@@ -21,3 +21,17 @@ export function fetchDiscs() {
         }
     });
 }
+export function fetchManufacturer() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield fetch('https://u05-wbsp.onrender.com/api/manufacturer/index');
+            const data = yield response.json();
+            console.log(data);
+            return data.data;
+        }
+        catch (error) {
+            console.error('Couldnt get the manufacturers', error);
+            return [];
+        }
+    });
+}

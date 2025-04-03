@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { fetchDiscs } from "./api.js";
+import { fetchDiscs, fetchManufacturer } from "./api.js";
 export function setupEventListeners() {
     document.addEventListener('DOMContentLoaded', () => __awaiter(this, void 0, void 0, function* () {
         const discs = yield fetchDiscs();
@@ -16,8 +16,22 @@ export function setupEventListeners() {
             list.innerHTML = '';
             discs.forEach((disc) => {
                 const li = document.createElement('li');
-                li.textContent = `${disc.title} || ${disc.type} || ${disc.id}`;
+                li.textContent = `${disc.title} || type: ${disc.type} || fade: ${disc.fade} || turn: ${disc.turn} || glide: ${disc.glide} || speed: ${disc.speed}`;
                 list.appendChild(li);
+            });
+        }
+    }));
+}
+export function setupEventListeners2() {
+    document.addEventListener('DOMContentLoaded', () => __awaiter(this, void 0, void 0, function* () {
+        const manfucaturers = yield fetchManufacturer();
+        const mList = document.getElementById('manufacturer-list');
+        if (mList) {
+            mList.innerHTML = '';
+            manfucaturers.forEach((manufacturer) => {
+                const mLi = document.createElement('li');
+                mLi.textContent = `name: ${manufacturer.name} || country: ${manufacturer.country}`;
+                mList.appendChild(mLi);
             });
         }
     }));
