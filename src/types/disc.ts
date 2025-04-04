@@ -1,9 +1,12 @@
+import { Manufacturer } from "./manufacturer";
+
 export type Disc = {
-    id: number;
+    _id: string;
     title: string;
-    type: string;
-    fade: number;
-    turn: number;
-    glide: number;
+    type: "Distance Driver" | "Driver" | "Mid-Range" | "Putter";
     speed: number;
-};
+    glide: number;
+    turn: number;
+    fade: number;
+    manufacturer: Manufacturer;
+  };

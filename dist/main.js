@@ -1,3 +1,3 @@
-import { setupEventListeners, setupEventListeners2 } from "./eventListeners.js";
-setupEventListeners();
-setupEventListeners2();
+import { showAllDiscs, showAllManufacturer } from "./eventListeners.js";
+showAllDiscs();
+showAllManufacturer();

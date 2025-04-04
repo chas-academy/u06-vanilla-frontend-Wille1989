@@ -2,26 +2,48 @@ import { fetchDiscs, fetchManufacturer } from "./api.js";
 import { Disc } from "../src/types/disc";
 import { Manufacturer } from "./types/manufacturer";
 
-export function setupEventListeners(): void {
+export function showAllDiscs(): void {
     document.addEventListener('DOMContentLoaded', async () => {
-        const discs = await fetchDiscs();
+        const searchInput = document.getElementById('search') as HTMLInputElement;
         const list = document.getElementById('disc-list');
 
-        if(list) {
-            list.innerHTML = '';
+        if(!list) return;
+        
+        const allDiscs = await fetchDiscs();
+        updateDiscList(allDiscs, list);
 
-            discs.forEach((disc: Disc) => {
-                const li = document.createElement('li');
+        searchInput.addEventListener('input', async () => {
+            const term = searchInput.value.trim();
 
-                li.textContent = `${disc.title} || type: ${disc.type} || fade: ${disc.fade} || turn: ${disc.turn} || glide: ${disc.glide} || speed: ${disc.speed}`;
-
-                list.appendChild(li);
-            });
+        if(term === '') {
+            updateDiscList(allDiscs, list);
+        } else {
+            const filteredResult = await fetchDiscs(term);
+            updateDiscList(filteredResult, list)
         }
+    });
+});
+}
+
+function updateDiscList(discs: Disc[], list: HTMLElement){
+    list.innerHTML = '';
+
+    if(discs.length === 0) {
+        list.innerHTML = '<li>Inga träffar på sökningen</li>';
+        return;
+    }
+
+    discs.forEach(disc => {
+        const li = document.createElement('li');
+
+        li.textContent = `${disc.title} || type: ${disc.type} || fade: ${disc.fade} || turn: ${disc.turn} || glide: ${disc.glide} || speed: ${disc.speed}`;
+
+        list.appendChild(li);
     });
 }
 
-export function setupEventListeners2(): void {
+
+export function showAllManufacturer(): void {
     document.addEventListener('DOMContentLoaded', async () => {
         const manfucaturers = await fetchManufacturer();
         const mList = document.getElementById('manufacturer-list');
