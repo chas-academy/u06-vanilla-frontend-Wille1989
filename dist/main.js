@@ -1,3 +1,7 @@
 import { showAllDiscs, showAllManufacturer } from "./eventListeners.js";
-showAllDiscs();
-showAllManufacturer();
+import { showAddDiscForm } from "./forms/createDisc.js";
+document.addEventListener("DOMContentLoaded", () => {
+    showAllDiscs();
+    showAllManufacturer();
+    showAddDiscForm();
+});

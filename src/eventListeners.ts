@@ -1,13 +1,18 @@
-import { fetchDiscs, fetchManufacturer } from "./api.js";
+
 import { Disc } from "../src/types/disc";
 import { Manufacturer } from "./types/manufacturer";
 
-export function showAllDiscs(): void {
-    document.addEventListener('DOMContentLoaded', async () => {
+import { showAddDiscForm } from "./forms/createDisc.js";
+
+import { fetchManufacturer } from "./api/fetchManufacturer.js";
+import { fetchDiscs } from "./api/fetchDiscs.js";
+
+
+export async function showAllDiscs(): Promise<void> {
         const searchInput = document.getElementById('search') as HTMLInputElement;
         const list = document.getElementById('disc-list');
 
-        if(!list) return;
+        if(!searchInput || !list) return;
         
         const allDiscs = await fetchDiscs();
         updateDiscList(allDiscs, list);
@@ -22,7 +27,6 @@ export function showAllDiscs(): void {
             updateDiscList(filteredResult, list)
         }
     });
-});
 }
 
 function updateDiscList(discs: Disc[], list: HTMLElement){
@@ -44,20 +48,34 @@ function updateDiscList(discs: Disc[], list: HTMLElement){
 
 
 export function showAllManufacturer(): void {
-    document.addEventListener('DOMContentLoaded', async () => {
-        const manfucaturers = await fetchManufacturer();
-        const mList = document.getElementById('manufacturer-list');
+    
+        fetchManufacturer().then((manufacturers) => {
 
-        if(mList) {
-            mList.innerHTML = '';
+            const mList = document.getElementById('manufacturer-list');
 
-            manfucaturers.forEach((manufacturer: Manufacturer) => {
-                const mLi = document.createElement('li');
+            if(mList) {
+                mList.innerHTML = '';
+    
+                manufacturers.forEach((manufacturer: Manufacturer) => {
+                    const mLi = document.createElement('li');
+    
+                    mLi.textContent = `name: ${manufacturer.name} || country: ${manufacturer.country}`;
+    
+                    mList.appendChild(mLi);
+                });
+            }
+        });      
+}
 
-                mLi.textContent = `name: ${manufacturer.name} || country: ${manufacturer.country}`;
 
-                mList.appendChild(mLi);
-            });
-        }
-    });
+// KNAPP FÖR ATT TA ANVÄNDAREN TILL ATT SKAPA EN NY DISC
+
+export function setupAddDiscButton(): void {
+    const addDiscBtn = document.getElementById('add-disc-btn');
+
+    if(addDiscBtn) {
+        addDiscBtn.addEventListener('click', () => {
+            showAddDiscForm();
+        });
+    }
 }

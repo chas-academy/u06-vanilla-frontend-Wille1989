@@ -7,12 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { fetchDiscs, fetchManufacturer } from "./api.js";
+import { showAddDiscForm } from "./forms/createDisc.js";
+import { fetchManufacturer } from "./api/fetchManufacturer.js";
+import { fetchDiscs } from "./api/fetchDiscs.js";
 export function showAllDiscs() {
-    document.addEventListener('DOMContentLoaded', () => __awaiter(this, void 0, void 0, function* () {
+    return __awaiter(this, void 0, void 0, function* () {
         const searchInput = document.getElementById('search');
         const list = document.getElementById('disc-list');
-        if (!list)
+        if (!searchInput || !list)
             return;
         const allDiscs = yield fetchDiscs();
         updateDiscList(allDiscs, list);
@@ -26,7 +28,7 @@ export function showAllDiscs() {
                 updateDiscList(filteredResult, list);
             }
         }));
-    }));
+    });
 }
 function updateDiscList(discs, list) {
     list.innerHTML = '';
@@ -41,16 +43,24 @@ function updateDiscList(discs, list) {
     });
 }
 export function showAllManufacturer() {
-    document.addEventListener('DOMContentLoaded', () => __awaiter(this, void 0, void 0, function* () {
-        const manfucaturers = yield fetchManufacturer();
+    fetchManufacturer().then((manufacturers) => {
         const mList = document.getElementById('manufacturer-list');
         if (mList) {
             mList.innerHTML = '';
-            manfucaturers.forEach((manufacturer) => {
+            manufacturers.forEach((manufacturer) => {
                 const mLi = document.createElement('li');
                 mLi.textContent = `name: ${manufacturer.name} || country: ${manufacturer.country}`;
                 mList.appendChild(mLi);
             });
         }
-    }));
+    });
+}
+// KNAPP FÖR ATT TA ANVÄNDAREN TILL ATT SKAPA EN NY DISC
+export function setupAddDiscButton() {
+    const addDiscBtn = document.getElementById('add-disc-btn');
+    if (addDiscBtn) {
+        addDiscBtn.addEventListener('click', () => {
+            showAddDiscForm();
+        });
+    }
 }
