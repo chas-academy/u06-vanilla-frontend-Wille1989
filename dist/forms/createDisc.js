@@ -10,43 +10,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { fetchManufacturer } from "../api/fetchManufacturer.js";
 export function showAddDiscForm() {
     return __awaiter(this, void 0, void 0, function* () {
-        const container = document.getElementById('form-container');
-        if (!container)
+        const formContainer = document.getElementById('form-container');
+        const button = document.getElementById('add-disc-btn');
+        if (!formContainer)
             return;
-        container.innerHTML =
+        formContainer.innerHTML =
             `<h2>Lägg till ny disc </h2>
-            <form id = "add-disc-form" >
-                
-                <label for="manufacturer">Tillverkare</label>
-                <select id="manufacturer" name="manufacturer" required>
-                    <option value="" disabled selected>Välj tillverkare</option> 
+                <form id = "add-disc-form" >
+                    
+                    <label for="manufacturer">Tillverkare</label>
+                    <select id="manufacturer" name="manufacturer" required>
+                        <option value="" disabled selected>Välj tillverkare</option> 
 
 
-                <label for= "title" > Titel: </label>
-                <input type = "text" id = "title" name = "title" required >
+                    <label for= "title" > Titel: </label>
+                    <input type = "text" id = "title" name = "title" required >
 
-                <label for="type">Typ:</label>
-                <select id="type" name="type" required>
-                    <option value="Distance Driver">Distance Driver</option>
-                    <option value="Driver">Driver</option>
-                    <option value="Mid-Range">Mid-Range</option>
-                    <option value="Putter">Putter</option>
-                </select>
+                    <label for="type">Typ:</label>
+                    <select id="type" name="type" required>
+                        <option value="Distance Driver">Distance Driver</option>
+                        <option value="Driver">Driver</option>
+                        <option value="Mid-Range">Mid-Range</option>
+                        <option value="Putter">Putter</option>
+                    </select>
 
-                <label for= "speed"> Speed: </label>
-                <input type = "number" id = "speed" name = "speed" required>
+                    <label for= "speed"> Speed: </label>
+                    <input type = "number" id = "speed" name = "speed" required>
 
-                <label for= "turn"> turn: </label>
-                <input type = "number" id = "turn" name = "turn" required>
+                    <label for= "turn"> turn: </label>
+                    <input type = "number" id = "turn" name = "turn" required>
 
-                <label for= "fade"> fade: </label>
-                <input type = "number" id = "fade" name = "fade" required>
+                    <label for= "fade"> fade: </label>
+                    <input type = "number" id = "fade" name = "fade" required>
 
-                <label for= "glide"> glide: </label>
-                <input type = "number" id = "glide" name = "glide" required>
+                    <label for= "glide"> glide: </label>
+                    <input type = "number" id = "glide" name = "glide" required>
 
-                <button type="submit"> Spara disc </button>
-            </form>`;
+                    <button type="submit"> Spara disc </button>
+                </form>`;
         const form = document.getElementById('add-disc-form');
         const manufacturerSelect = document.getElementById('manufacturer');
         const manufacturers = yield fetchManufacturer();
@@ -84,3 +85,4 @@ export function showAddDiscForm() {
         }));
     });
 }
+;

@@ -3,9 +3,12 @@ import { Disc } from "../src/types/disc";
 import { Manufacturer } from "./types/manufacturer";
 
 import { showAddDiscForm } from "./forms/createDisc.js";
+import { showAddManufacturerForm } from "./forms/createManufacturer";
 
 import { fetchManufacturer } from "./api/fetchManufacturer.js";
 import { fetchDiscs } from "./api/fetchDiscs.js";
+
+
 
 
 export async function showAllDiscs(): Promise<void> {

@@ -4,24 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./src/styles/main.css">
 </head>
 <body>
 
-    <label for="search">sök</label>
-    <input type="text" id="search" placeholder="sök ...">
-    <ul id="search-result"></ul>
+    <section id="NavigationBar">
+        <button type="button" class="navigationButton" data-target="form-section-disc">Lägg till ny disc</button>
+    </section>
 
-    <button type="button" id="add-disc-btn">Lägg till ny disc</button>
-    <div id="form-container"></div>
+    <section id="home-section">
 
+        <section id="search-section">
+            <label for="search">sök</label>
+            <input type="text" id="search" placeholder="sök ...">
+            <ul id="search-result"></ul>
+        </section>
 
+        <section id="disc-section">
+            <h1>Alla Discar</h1>
+            <ul id="disc-list"></ul>
+        </section>
 
-    <h1>Alla Discar</h1>
-    <ul id="disc-list"></ul>
+        <section id="manufacturer-section">
+            <h1>Alla tillverkare</h1>
+            <ul id="manufacturer-list"></ul>
+        </section>
 
+    </section>
 
-    <h1>Alla tillverkare</h1>
-    <ul id="manufacturer-list"></ul>
+    <section id="form-section-disc">
+        <button type="button" class="navigationButton" data-target="disc-section">Gå tillbaka</button>
+        <div id="form-container"></div>
+    </section>
+
+    <section id="form-section-add-manufacturer">
+        <h1>Skapa tillverkare</h1>
+        <div id="form-container-add-manufacturer"></div>
+    </section>
+
     <script type="module" src="./dist/main.js"></script>
 </body>
 </html>
