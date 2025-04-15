@@ -1,13 +1,13 @@
-import { Disc } from "../types/disc";
+import { Disc } from "../types/disc.js";
 
 export async function updateDisc(id: string, updatedDisc: Partial<Disc>): Promise <void> {
     try {
-        const response = await fetch(`https://u05-wbsp.onrender.com/api/discs/update/:id`, {
+        const response = await fetch(`https://u05-wbsp.onrender.com/api/discs/update/${id}`, {
             method: 'PATCH',
             headers: { 
                 "Content-Type": 'application/json'
             },
-            body: JSON.stringify(updateDisc)
+            body: JSON.stringify(updatedDisc)
         });
 
         if(!response.ok) {

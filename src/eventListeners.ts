@@ -3,7 +3,9 @@ import { Disc } from "../src/types/disc";
 import { Manufacturer } from "./types/manufacturer";
 
 import { showAddDiscForm } from "./forms/createDisc.js";
-import { showAddManufacturerForm } from "./forms/createManufacturer";
+import { initUpdateManufacturerForm } from "./forms/initUpdateForm.js";
+
+import { initUpdateDiscForm } from "./forms/initUpdateForm.js";
 
 import { fetchManufacturer } from "./api/fetchManufacturer.js";
 import { fetchDiscs } from "./api/fetchDiscs.js";
@@ -45,6 +47,13 @@ function updateDiscList(discs: Disc[], list: HTMLElement){
 
         li.textContent = `${disc.title} || type: ${disc.type} || fade: ${disc.fade} || turn: ${disc.turn} || glide: ${disc.glide} || speed: ${disc.speed}`;
 
+        const editBtnDisc = document.createElement('button');
+        editBtnDisc.textContent = "Redigera";
+        editBtnDisc.addEventListener('click', () => {
+            initUpdateDiscForm(disc._id)
+        });
+
+        list.appendChild(editBtnDisc);
         list.appendChild(li);
     });
 }
@@ -63,7 +72,14 @@ export function showAllManufacturer(): void {
                     const mLi = document.createElement('li');
     
                     mLi.textContent = `name: ${manufacturer.name} || country: ${manufacturer.country}`;
+
+                    const editBtn = document.createElement('button');
+                    editBtn.textContent = "Redigera";
+                    editBtn.addEventListener('click', () => {
+                        initUpdateManufacturerForm(manufacturer._id);
+                    });
     
+                    mLi.appendChild(editBtn);
                     mList.appendChild(mLi);
                 });
             }

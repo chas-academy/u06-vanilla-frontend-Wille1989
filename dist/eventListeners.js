@@ -8,6 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { showAddDiscForm } from "./forms/createDisc.js";
+import { initUpdateManufacturerForm } from "./forms/initUpdateForm.js";
+import { initUpdateDiscForm } from "./forms/initUpdateForm.js";
 import { fetchManufacturer } from "./api/fetchManufacturer.js";
 import { fetchDiscs } from "./api/fetchDiscs.js";
 export function showAllDiscs() {
@@ -39,6 +41,12 @@ function updateDiscList(discs, list) {
     discs.forEach(disc => {
         const li = document.createElement('li');
         li.textContent = `${disc.title} || type: ${disc.type} || fade: ${disc.fade} || turn: ${disc.turn} || glide: ${disc.glide} || speed: ${disc.speed}`;
+        const editBtnDisc = document.createElement('button');
+        editBtnDisc.textContent = "Redigera";
+        editBtnDisc.addEventListener('click', () => {
+            initUpdateDiscForm(disc._id);
+        });
+        list.appendChild(editBtnDisc);
         list.appendChild(li);
     });
 }
@@ -50,6 +58,12 @@ export function showAllManufacturer() {
             manufacturers.forEach((manufacturer) => {
                 const mLi = document.createElement('li');
                 mLi.textContent = `name: ${manufacturer.name} || country: ${manufacturer.country}`;
+                const editBtn = document.createElement('button');
+                editBtn.textContent = "Redigera";
+                editBtn.addEventListener('click', () => {
+                    initUpdateManufacturerForm(manufacturer._id);
+                });
+                mLi.appendChild(editBtn);
                 mList.appendChild(mLi);
             });
         }

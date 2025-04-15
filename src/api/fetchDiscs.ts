@@ -1,4 +1,4 @@
-import { Disc } from "../types/disc";
+import { Disc } from "../types/disc.js";
 
 
 export async function fetchDiscs(searchTerm: string = ''): Promise<Disc[]> {

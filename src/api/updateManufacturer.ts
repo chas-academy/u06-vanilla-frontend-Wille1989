@@ -1,4 +1,4 @@
-import { Manufacturer } from "../types/manufacturer";
+import { Manufacturer } from "../types/manufacturer.js";
 
 export async function updateManufacturer(id: string, updatedManufacturer: Partial<Manufacturer>): Promise<void> {
     try {
@@ -7,7 +7,7 @@ export async function updateManufacturer(id: string, updatedManufacturer: Partia
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(updateManufacturer)
+            body: JSON.stringify(updatedManufacturer)
         });
 
         if(!response.ok) {
