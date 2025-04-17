@@ -1,4 +1,5 @@
-import { Disc } from "../types/disc.js";
+import { Disc } from "../../types/disc.js";
+import { showMessage } from "../../ui/ui.js";
 
 export async function updateDisc(id: string, updatedDisc: Partial<Disc>): Promise <void> {
     try {
@@ -13,8 +14,9 @@ export async function updateDisc(id: string, updatedDisc: Partial<Disc>): Promis
         if(!response.ok) {
             throw new Error ("Misslyckades med att uppdatera disc!");
         }
-        console.log('Disc Uppdaterad!');
+        showMessage('Discen uppdaterades!', 'success');
     } catch(error) {
+        showMessage('Discen gick inte att uppdatera, försök igen', 'error');
         console.error('Fel vid uppdatering', error);
     }
 }

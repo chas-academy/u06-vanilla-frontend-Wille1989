@@ -1,4 +1,5 @@
-import { Manufacturer } from "../types/manufacturer.js";
+import { Manufacturer } from "../../types/manufacturer.js";
+import { showMessage } from "../../ui/ui.js";
 
 export async function createManufacturer(name: string, country: string): Promise<Manufacturer |null> {
 
@@ -12,10 +13,12 @@ export async function createManufacturer(name: string, country: string): Promise
         });
 
         const data = await response.json();
-        console.log("tillverkare skapad!", data);
 
+       showMessage('Ny tillverkare skapad i systemet!', 'success');
         return data.data;
     } catch (error) {
+
+        showMessage('Något gick fel, försök att skapa en tillverkare igen', 'error');
         console.error("Misslyckade att skapa tillverkare!", error);
         return null;
     }

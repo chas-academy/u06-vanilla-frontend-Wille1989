@@ -7,7 +7,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { showAddDiscForm } from "./forms/createDisc.js";
 import { initUpdateManufacturerForm } from "./forms/initUpdateForm.js";
 import { initUpdateDiscForm } from "./forms/initUpdateForm.js";
 import { fetchManufacturer } from "./api/fetchManufacturer.js";
@@ -40,13 +39,20 @@ function updateDiscList(discs, list) {
     }
     discs.forEach(disc => {
         const li = document.createElement('li');
-        li.textContent = `${disc.title} || type: ${disc.type} || fade: ${disc.fade} || turn: ${disc.turn} || glide: ${disc.glide} || speed: ${disc.speed}`;
+        // Skapa en container för disc-info
+        li.innerHTML = `
+      <div class="disc-info">
+          <strong>${disc.title}</strong>
+          <span>Type: ${disc.type}</span>
+          <span>Speed: ${disc.speed}, Glide: ${disc.glide}, Turn: ${disc.turn}, Fade: ${disc.fade}</span>
+      </div>
+      `;
         const editBtnDisc = document.createElement('button');
         editBtnDisc.textContent = "Redigera";
         editBtnDisc.addEventListener('click', () => {
             initUpdateDiscForm(disc._id);
         });
-        list.appendChild(editBtnDisc);
+        li.appendChild(editBtnDisc);
         list.appendChild(li);
     });
 }
@@ -57,9 +63,17 @@ export function showAllManufacturer() {
             mList.innerHTML = '';
             manufacturers.forEach((manufacturer) => {
                 const mLi = document.createElement('li');
-                mLi.textContent = `name: ${manufacturer.name} || country: ${manufacturer.country}`;
+                // Lägg till struktur
+                mLi.innerHTML = `
+            <div class="manufacturer-info">
+              <strong>${manufacturer.name}</strong>
+              <span>Land: ${manufacturer.country}</span>
+            </div>
+          `;
+                // Skapa redigera-knapp
                 const editBtn = document.createElement('button');
                 editBtn.textContent = "Redigera";
+                editBtn.classList.add("edit-btn");
                 editBtn.addEventListener('click', () => {
                     initUpdateManufacturerForm(manufacturer._id);
                 });
@@ -68,13 +82,4 @@ export function showAllManufacturer() {
             });
         }
     });
-}
-// KNAPP FÖR ATT TA ANVÄNDAREN TILL ATT SKAPA EN NY DISC
-export function setupAddDiscButton() {
-    const addDiscBtn = document.getElementById('add-disc-btn');
-    if (addDiscBtn) {
-        addDiscBtn.addEventListener('click', () => {
-            showAddDiscForm();
-        });
-    }
 }

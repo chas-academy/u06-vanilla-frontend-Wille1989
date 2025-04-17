@@ -9,47 +9,55 @@
 <body>
 
     <section id="NavigationBar">
-        <button type="button" class="navigationButton" data-target="form-section-disc">Lägg till ny disc</button>
+        <div id="dropdown-wrapper">
+            <label for="create-select" class="visually-hidden">Lägg till:</label>
+            <select id="create-select">
+              <option value="" disabled selected>Skapa</option>
+              <option value="manufacturer">Tillverkare</option>
+              <option value="disc">Disc</option>
+            </select>
+          </div>
+
+        <div id="search-section">
+            <input type="text" id="search" placeholder="sök ...">
+            <ul id="search-result"></ul>
+        </div>
     </section>
+
+    <div id="message-area"></div>
+
+    <section id="add-form">
+        <div id="form-section-disc">
+            <div id="form-container"></div>
+        </div>
+
+        <div id="form-section-add-manufacturer">
+            <div id="form-container-add-manufacturer"></div>
+        </div>
+    </section>
+
+
+    <section>
+        <section id="form-section-update-manufacturer">
+            <div id="form-container-update-manufacturer"></div>
+        </section>
+
+        <section id="form-section-update-disc">
+            <div id="form-container-update-disc"></div>
+        </section>
+    </section>
+
 
     <section id="home-section">
 
-        <section id="search-section">
-            <label for="search">sök</label>
-            <input type="text" id="search" placeholder="sök ...">
-            <ul id="search-result"></ul>
-        </section>
-
-        <section id="disc-section">
-            <h1>Alla Discar</h1>
-            <ul id="disc-list"></ul>
-        </section>
-
-        <section id="manufacturer-section">
-            <h1>Alla tillverkare</h1>
+        <div id="manufacturer-section">
             <ul id="manufacturer-list"></ul>
-        </section>
+        </div>
 
-    </section>
+        <div id="disc-section">
+            <ul id="disc-list"></ul>
+        </div>
 
-    <section id="form-section-disc">
-        <button type="button" class="navigationButton" data-target="disc-section">Gå tillbaka</button>
-        <div id="form-container"></div>
-    </section>
-
-    <section id="form-section-add-manufacturer">
-        <h1>Skapa tillverkare</h1>
-        <div id="form-container-add-manufacturer"></div>
-    </section>
-
-    <section id="form-section-update-manufacturer">
-        <h1>Uppdatera Tillverkare</h1>
-        <div id="form-container-update-manufacturer"></div>
-    </section>
-
-    <section id="form-section-update-disc">
-        <h1>Uppdatera disc</h1>
-        <div id="form-container-update-disc"></div>
     </section>
 
     <script type="module" src="./dist/main.js"></script>

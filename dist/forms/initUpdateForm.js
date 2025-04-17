@@ -7,15 +7,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getDiscsById } from "../api/fetchSpecifikDisc.js";
-import { getManufacturer } from "../api/fetchSpecifikManufacturer.js";
+import { getDiscsById } from "../api/fetch/fetchSpecifikDisc.js";
+import { getManufacturer } from "../api/fetch/fetchSpecifikManufacturer.js";
 import { showUpdateManufacturerForm } from "./updateManufacturer.js";
 import { showUpdateDiscForm } from "./updateDisc.js";
+import { showForm } from "../ui/formvisibility.js";
 export function initUpdateManufacturerForm(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const manufacturer = yield getManufacturer(id);
             yield showUpdateManufacturerForm(manufacturer);
+            showForm('form-section-update-manufacturer');
             console.log("Initierar uppdateringsformulär med ID:", id);
         }
         catch (error) {
@@ -28,6 +30,7 @@ export function initUpdateDiscForm(id) {
         try {
             const disc = yield getDiscsById(id);
             yield showUpdateDiscForm(disc);
+            showForm('form-section-update-disc');
             console.log("Initierar uppdateringsformulär med ID:", id);
         }
         catch (error) {

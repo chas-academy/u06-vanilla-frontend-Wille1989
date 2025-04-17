@@ -1,4 +1,4 @@
-import { Manufacturer } from "../types/manufacturer.js";
+import { Manufacturer } from "../../types/manufacturer";
 
 export async function getManufacturer(id: string): Promise<Manufacturer> {
 

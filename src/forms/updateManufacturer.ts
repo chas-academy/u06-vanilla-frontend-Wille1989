@@ -1,7 +1,8 @@
-import { updateManufacturer } from "../api/updateManufacturer.js";
+import { updateManufacturer } from "../api/update/updateManufacturer.js";
 import { Manufacturer } from "../types/manufacturer.js";
-import { showAllManufacturer } from "../eventListeners.js";
-import { deleteManufacturerAndDiscs } from "../api/deleteManufacturerAndDisc.js";
+import { showAllManufacturer } from "../api/show/manufacturers.js";
+import { deleteManufacturerAndDiscs } from "../api/delete/deleteManufacturerAndDisc.js";
+import { showHome } from "../ui/formvisibility.js";
 
 
 export async function showUpdateManufacturerForm(manufacturer: Manufacturer): Promise<void> {
@@ -32,7 +33,6 @@ export async function showUpdateManufacturerForm(manufacturer: Manufacturer): Pr
         const country = (document.getElementById('update-country') as HTMLInputElement).value;
 
         await updateManufacturer(manufacturer._id, { name, country });
-        alert('Tillverkare uppdaterades!');
 
         showAllManufacturer();
     });
@@ -43,8 +43,19 @@ export async function showUpdateManufacturerForm(manufacturer: Manufacturer): Pr
         if(!confirmDelete) return;
 
         await deleteManufacturerAndDiscs(manufacturer._id);
-        alert('Tillverkaren borttagen!');
 
-        showAllManufacturer();
+        form.reset();
+        showHome();
     });
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.type = 'button';
+    cancelBtn.className = 'form-cancel-btn';
+    cancelBtn.textContent = 'Tillbaka';
+
+    cancelBtn.addEventListener('click', () => {
+        showHome();
+    });
+    
+    form.appendChild(cancelBtn);
 }

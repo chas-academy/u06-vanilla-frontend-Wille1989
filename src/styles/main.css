@@ -2,7 +2,10 @@
 @import "./forms.css";
 @import "./sections.css";
 @import "./variables.css";
+@import "./navigationbar.css";
+@import "./homeSection.css";
+@import "./messageArea.css";
 
 body {
-    background: #ffffff;
+    background: #d0c7c7;
   }

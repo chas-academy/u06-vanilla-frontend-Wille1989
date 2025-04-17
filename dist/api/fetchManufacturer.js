@@ -7,15 +7,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { showMessage } from "../ui.js";
 export function fetchManufacturer() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const response = yield fetch('https://u05-wbsp.onrender.com/api/manufacturer/index');
             const data = yield response.json();
-            console.log(data);
+            console.log('Tillverkare hämtade!', data);
             return data.data;
         }
         catch (error) {
+            showMessage('Det gick inte att hämta alla tillverkare', 'error');
             console.error('Couldnt get the manufacturers', error);
             return [];
         }

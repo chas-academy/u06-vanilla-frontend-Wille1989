@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { showMessage } from "../ui.js";
 export function updateDisc(id, updatedDisc) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -20,9 +21,10 @@ export function updateDisc(id, updatedDisc) {
             if (!response.ok) {
                 throw new Error("Misslyckades med att uppdatera disc!");
             }
-            console.log('Disc Uppdaterad!');
+            showMessage('Discen uppdaterades!', 'success');
         }
         catch (error) {
+            showMessage('Discen gick inte att uppdatera, försök igen', 'error');
             console.error('Fel vid uppdatering', error);
         }
     });

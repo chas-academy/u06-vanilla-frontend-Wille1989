@@ -7,9 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { updateDisc } from "../api/updateDisc.js";
-import { showAllDiscs } from "../eventListeners.js";
-import { deleteDisc } from "../api/deleteDisc.js";
+import { updateDisc } from "../api/update/updateDisc.js";
+import { deleteDisc } from "../api/delete/deleteDisc.js";
+import { showHome } from "../ui/formvisibility.js";
 export function showUpdateDiscForm(disc) {
     const container = document.getElementById('form-container-update-disc');
     container.innerHTML = `
@@ -54,8 +54,7 @@ export function showUpdateDiscForm(disc) {
             fade: parseInt(document.getElementById('update-fade').value),
         };
         yield updateDisc(disc._id, updatedDisc);
-        alert("Disc Uppdaterades!");
-        showAllDiscs();
+        showHome();
     }));
     const deleteBtnDisc = document.getElementById('delete-disc-btn');
     deleteBtnDisc.addEventListener('click', () => __awaiter(this, void 0, void 0, function* () {
@@ -63,7 +62,15 @@ export function showUpdateDiscForm(disc) {
         if (!confirmDelete)
             return;
         yield deleteDisc(disc._id);
-        alert("Disc Borttagen!");
-        showAllDiscs();
+        form.reset();
+        showHome();
     }));
+    const cancelBtn = document.createElement('button');
+    cancelBtn.type = 'button';
+    cancelBtn.className = 'form-cancel-btn';
+    cancelBtn.textContent = 'Tillbaka';
+    cancelBtn.addEventListener('click', () => {
+        showHome();
+    });
+    form.appendChild(cancelBtn);
 }

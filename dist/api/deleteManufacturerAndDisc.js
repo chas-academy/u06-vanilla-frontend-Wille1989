@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { showMessage } from "../ui.js";
 export function deleteManufacturerAndDiscs(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -16,9 +17,10 @@ export function deleteManufacturerAndDiscs(id) {
             if (!response.ok) {
                 throw new Error("Misslyckades med att ta bort tillverkare, försök igen");
             }
-            console.log("Tillverkare + tillhörande discar borttagna!");
+            showMessage('Tillverkare och tillhörande discar nu borttagna!', 'success');
         }
         catch (error) {
+            showMessage('Borttagning gick inte att utföra, försök igen senare', 'error');
             console.error('Fel vid borttagningav tillverkare', error);
         }
     });

@@ -1,4 +1,4 @@
-import { Disc } from "../types/disc.js";
+import { Disc } from "../../types/disc.js";
 
 export async function getDiscsById(id: string): Promise<Disc> {
 

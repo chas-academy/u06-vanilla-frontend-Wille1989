@@ -7,7 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { fetchManufacturer } from "../api/fetchManufacturer.js";
+import { fetchManufacturer } from "../api/fetch/fetchManufacturer.js";
+import { showForm, showHome } from "../ui/formvisibility.js";
+import { showMessage } from "../ui/ui.js";
 export function showAddDiscForm() {
     return __awaiter(this, void 0, void 0, function* () {
         const formContainer = document.getElementById('form-container');
@@ -76,13 +78,22 @@ export function showAddDiscForm() {
                 body: JSON.stringify(newDisc)
             });
             if (response.ok) {
-                console.log("Disc skapades!");
+                showMessage('Ny Disc skapades!', 'success');
                 form.reset();
             }
             else {
-                console.error("Misslyckades att skapa disc");
+                showMessage('Misslyckades att skapa disc', 'error');
             }
         }));
+        const cancelBtn = document.createElement('button');
+        cancelBtn.type = 'button';
+        cancelBtn.className = 'form-cancel-btn';
+        cancelBtn.textContent = 'Tillbaka';
+        cancelBtn.addEventListener('click', () => {
+            showHome();
+        });
+        form.appendChild(cancelBtn);
+        showForm('form-section-disc');
     });
 }
 ;

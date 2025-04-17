@@ -7,9 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { updateManufacturer } from "../api/updateManufacturer.js";
-import { showAllManufacturer } from "../eventListeners.js";
-import { deleteManufacturerAndDiscs } from "../api/deleteManufacturerAndDisc.js";
+import { updateManufacturer } from "../api/update/updateManufacturer.js";
+import { showAllManufacturer } from "../api/show/manufacturers.js";
+import { deleteManufacturerAndDiscs } from "../api/delete/deleteManufacturerAndDisc.js";
+import { showHome } from "../ui/formvisibility.js";
 export function showUpdateManufacturerForm(manufacturer) {
     return __awaiter(this, void 0, void 0, function* () {
         const container = document.getElementById('form-container-update-manufacturer');
@@ -35,7 +36,6 @@ export function showUpdateManufacturerForm(manufacturer) {
             const name = document.getElementById('update-name').value;
             const country = document.getElementById('update-country').value;
             yield updateManufacturer(manufacturer._id, { name, country });
-            alert('Tillverkare uppdaterades!');
             showAllManufacturer();
         }));
         const deleteBtnManufacturer = document.getElementById('delete-manufacturer-btn');
@@ -44,8 +44,16 @@ export function showUpdateManufacturerForm(manufacturer) {
             if (!confirmDelete)
                 return;
             yield deleteManufacturerAndDiscs(manufacturer._id);
-            alert('Tillverkaren borttagen!');
-            showAllManufacturer();
+            form.reset();
+            showHome();
         }));
+        const cancelBtn = document.createElement('button');
+        cancelBtn.type = 'button';
+        cancelBtn.className = 'form-cancel-btn';
+        cancelBtn.textContent = 'Tillbaka';
+        cancelBtn.addEventListener('click', () => {
+            showHome();
+        });
+        form.appendChild(cancelBtn);
     });
 }

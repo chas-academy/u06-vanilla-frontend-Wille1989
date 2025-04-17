@@ -1,0 +1,46 @@
+#NavigationBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+#dropdown-wrapper select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  transition: border-color 0.2s ease;
+}
+
+#dropdown-wrapper select:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Sökfältet */
+#search-section input[type="text"] {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  transition: border-color 0.2s ease;
+}
+
+#search-section input[type="text"]:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.visually-hidden {
+  display: none;
+}

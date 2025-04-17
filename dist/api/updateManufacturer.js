@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { showMessage } from "../ui.js";
 export function updateManufacturer(id, updatedManufacturer) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -20,9 +21,10 @@ export function updateManufacturer(id, updatedManufacturer) {
             if (!response.ok) {
                 throw new Error('Misslyckades med att uppdatera tillverkare, prova igen');
             }
-            console.log('Tillverkaren uppdaterad!');
+            showMessage('Tillverkaren uppdaterades!', 'success');
         }
         catch (error) {
+            showMessage('Tillverkaren gick inte att uppdatera, försök igen', 'error');
             console.error('Fel vid uppdatering av tillverkare', error);
         }
     });

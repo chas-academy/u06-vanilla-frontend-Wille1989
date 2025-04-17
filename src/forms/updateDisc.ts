@@ -1,7 +1,10 @@
 import { Disc } from "../types/disc.js";
-import { updateDisc } from "../api/updateDisc.js";
-import { showAllDiscs } from "../eventListeners.js";
-import { deleteDisc } from "../api/deleteDisc.js";
+
+import { updateDisc } from "../api/update/updateDisc.js";
+import { deleteDisc } from "../api/delete/deleteDisc.js";
+
+import { showHome } from "../ui/formvisibility.js";
+
 
 export function showUpdateDiscForm(disc: Disc) {
     const container = document.getElementById('form-container-update-disc')!;
@@ -52,9 +55,7 @@ export function showUpdateDiscForm(disc: Disc) {
 
     await updateDisc(disc._id, updatedDisc);
 
-    alert("Disc Uppdaterades!");
-
-    showAllDiscs();
+    showHome();
   });
 
   const deleteBtnDisc = document.getElementById('delete-disc-btn')!;
@@ -63,9 +64,19 @@ export function showUpdateDiscForm(disc: Disc) {
     if(!confirmDelete) return;
 
     await deleteDisc(disc._id);
-    alert("Disc Borttagen!");
 
-    showAllDiscs();
+    form.reset();
+    showHome();
   });
 
+  const cancelBtn = document.createElement('button');
+  cancelBtn.type = 'button';
+  cancelBtn.className = 'form-cancel-btn';
+  cancelBtn.textContent = 'Tillbaka';
+
+  cancelBtn.addEventListener('click', () => {
+      showHome();
+  });
+  
+  form.appendChild(cancelBtn);
 }

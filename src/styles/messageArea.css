@@ -1,0 +1,24 @@
+#message-area {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: white;
+    display: none;
+  }
+  
+  #message-area.success {
+    background-color: #28a745;
+  }
+  
+  #message-area.error {
+    background-color: #dc3545;
+  }
+  
+  #message-area.info {
+    background-color: #007bff;
+  }
+  

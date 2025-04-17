@@ -1,4 +1,5 @@
-import { createManufacturer } from "../api/createManufacturer.js";
+import { createManufacturer } from "../api/create/createManufacturer.js";
+import { showForm, showHome } from "../ui/formvisibility.js";
 
 export function showAddManufacturerForm () {
     const container = document.getElementById('form-container-add-manufacturer');
@@ -28,4 +29,17 @@ export function showAddManufacturerForm () {
         await createManufacturer(name, country);
         form.reset();
     });
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.type = 'button';
+    cancelBtn.className = 'form-cancel-btn';
+    cancelBtn.textContent = 'Tillbaka';
+
+    cancelBtn.addEventListener('click', () => {
+        showHome();
+    });
+
+    form.appendChild(cancelBtn);
+
+    showForm('form-section-add-manufacturer');
 }

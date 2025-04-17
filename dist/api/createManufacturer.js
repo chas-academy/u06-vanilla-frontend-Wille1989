@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { showMessage } from "../ui.js";
 export function createManufacturer(name, country) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -18,10 +19,11 @@ export function createManufacturer(name, country) {
                 body: JSON.stringify({ name, country })
             });
             const data = yield response.json();
-            console.log("tillverkare skapad!", data);
+            showMessage('Ny tillverkare skapad i systemet!', 'success');
             return data.data;
         }
         catch (error) {
+            showMessage('Något gick fel, försök att skapa en tillverkare igen', 'error');
             console.error("Misslyckade att skapa tillverkare!", error);
             return null;
         }

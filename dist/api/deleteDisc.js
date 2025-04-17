@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { showMessage } from "../ui.js";
 export function deleteDisc(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -16,9 +17,10 @@ export function deleteDisc(id) {
             if (!response.ok) {
                 throw new Error("misslyckades att ta bort disc, försök igen");
             }
-            console.log("Disc Borttagen!");
+            showMessage('Discen togs bort!', 'success');
         }
         catch (error) {
+            showMessage('Discen kunde inte tas bort, försök igen senare', 'error');
             console.error('Fel vid borttagning av disc:', error);
         }
     });
