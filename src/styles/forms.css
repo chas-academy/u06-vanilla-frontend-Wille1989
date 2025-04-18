@@ -1,7 +1,7 @@
-/* Grundstruktur */
 form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1rem;
     max-width: 400px;
     margin: 2rem auto;
@@ -12,13 +12,12 @@ form {
     font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   }
   
-  /* Etiketter */
+
   form label {
     font-weight: 600;
     color: #333;
   }
   
-  /* Inputfält */
   form input {
     padding: 0.6rem;
     border: 1px solid #ccc;
@@ -32,7 +31,7 @@ form {
     outline: none;
   }
   
-  /* Knapp */
+
   form button {
     padding: 0.7rem;
     border: none;

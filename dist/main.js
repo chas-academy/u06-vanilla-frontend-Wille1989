@@ -4,6 +4,7 @@ import { showHome } from "./ui/formvisibility.js";
 import { setupManufacturerHomeSection, setupDiscHomeSection } from "./styling/formhandler.js";
 import { setupSearchHover } from "./styling/search.js";
 import { hooverDropDown } from "./styling/dropdownwrapper.js";
+import "./ui/formvisibility.js";
 import "./ui/navigationbar.js";
 document.addEventListener("DOMContentLoaded", () => {
     showHome();

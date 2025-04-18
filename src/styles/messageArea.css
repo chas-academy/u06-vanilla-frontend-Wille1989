@@ -1,7 +1,7 @@
 #message-area {
     position: fixed;
-    top: 1rem;
-    right: 1rem;
+    top: 1.5rem;
+    right: 2rem;
     z-index: 1000;
     padding: 1rem 1.5rem;
     border-radius: 8px;

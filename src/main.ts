@@ -7,6 +7,7 @@ import { setupManufacturerHomeSection, setupDiscHomeSection } from "./styling/fo
 import { setupSearchHover } from "./styling/search.js";
 import { hooverDropDown } from "./styling/dropdownwrapper.js";
 
+import "./ui/formvisibility.js";
 import "./ui/navigationbar.js";
 
 

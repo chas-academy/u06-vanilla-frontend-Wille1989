@@ -14,7 +14,6 @@ export function showForm(formIdToShow: string) {
     if(homeSection) {
         (homeSection as HTMLElement).style.display = 'none';
     }
-    
 }
 
 export function showHome() {
